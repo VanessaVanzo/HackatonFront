@@ -1,0 +1,41 @@
+<mat-sidenav-container class="example-container main">
+  <mat-sidenav class="sidenav" #sidenav mode="side" [(opened)]="opened" position="end">
+    <p><mat-icon class="text-azul" (click)="sidenav.toggle()">chevron_left</mat-icon>
+    <div class="flex flex-column flex-align-center">
+      <mat-icon class="icone-money text-azul"> attach_money</mat-icon>
+      <div class="flex flex-align-baseline">
+        <img src="../assets/gr_trianguloTitulo.png" alt="">
+        <h1 class="text-azul ml-2">Empréstimo <span class="fw-300">Pessoal</span></h1>
+      </div>
+    </div>
+
+    <form class="mt-5 flex flex-column flex-align-center" [formGroup]="formulario" (ngSubmit)="onSubmit()">
+      <mat-form-field>
+        <mat-label>Valor</mat-label>
+        <input matInput formControlName="valorDesejado">
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Prazo</mat-label>
+        <input matInput formControlName="prazo">
+      </mat-form-field>
+
+      <p><button mat-flat-button color="primary" mat-button class="button-calcular">Calcular</button></p>
+
+    </form>
+
+
+
+
+
+  </mat-sidenav>
+
+  <mat-sidenav-content>
+
+    <div class="thumbnail-wrapper">
+      <div class="imagem-main"></div>
+      <p><button mat-flat-button color="primary" mat-button (click)="sidenav.toggle()">Fazer Simulação</button></p>
+    </div>
+
+  </mat-sidenav-content>
+</mat-sidenav-container>
