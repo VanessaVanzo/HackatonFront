@@ -29,6 +29,11 @@
 
 }
 
+.detalhe-parcelas{
+  margin-bottom: 5px;
+  border: 1px solid #e5e4e4;
+}
+
 
 
 .thumbnail-wrapper {
@@ -37,7 +42,7 @@
 
 .sidenav{
   background-color: rgb(247, 247, 247);
-  width: 45%;
+  width: 100%;
 }
 
 .icone-money{
@@ -53,5 +58,11 @@
 
 .button-calcular:hover{
   background-color:#f09814  !important
+}
+
+.resultado-simulacao{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 

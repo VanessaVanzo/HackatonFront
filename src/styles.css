@@ -51,6 +51,7 @@ body{
 .flex.flex-wrap { flex-wrap: wrap; }
 .flex.flex-no-wrap { flex-wrap: nowrap; }
 
+.tx-center{text-align:center}
 
 /* margin */
 
