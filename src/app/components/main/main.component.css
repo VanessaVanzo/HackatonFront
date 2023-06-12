@@ -66,3 +66,44 @@
   align-items: center;
 }
 
+
+@media (max-width: 1023px) {
+  .sidenav{
+    background-color: rgb(247, 247, 247);
+    width: 100%;
+  }
+
+  .diplay-nome-mobile{
+    display: none;
+  }
+
+}
+
+@media (max-width: 767px) {
+  .mat-expansion-panel-header {
+    height: auto;
+  }
+
+  .mat-expansion-panel-header-title, .mat-expansion-panel-header-description {
+    display: flex;
+    flex-grow: 1;
+    flex-basis: none;
+    margin-right: none;
+    align-items: initial
+}
+
+.mat-panel-description-emp{
+  display: flex;
+  flex-direction: column;
+}
+
+.margin-mobile{
+  margin-bottom: 10px;
+  border-bottom: 1px solid rgb(182, 182, 182);
+}
+.detalhe-parcelas{
+  flex-direction: column;
+}
+
+}
+

@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { map } from 'rxjs';
 import { Emprestimo, Parcelas } from './emprestimoInterface';
+import { BreakpointObserver, BreakpointState } from '@angular/cdk/layout';
 
 @Component({
   selector: 'app-main',
@@ -19,13 +20,27 @@ export class MainComponent implements OnInit {
   taxaJuros!: number;
   erro: string = '';
 
-  constructor(private formBuilder: FormBuilder, private http: HttpClient) {}
+  constructor(
+    private formBuilder: FormBuilder,
+    private http: HttpClient,
+    public breakpointObserver: BreakpointObserver
+  ) {}
 
   ngOnInit() {
     this.formulario = this.formBuilder.group({
       valorDesejado: [null],
       prazo: [null],
     });
+
+    this.breakpointObserver
+      .observe(['(min-width: 1024px)'])
+      .subscribe((state: BreakpointState) => {
+        if (state.matches) {
+          console.log('Viewport width is 1024px or greater!');
+        } else {
+          this.opened = true;
+        }
+      });
   }
 
   onSubmit() {
@@ -53,7 +68,6 @@ export class MainComponent implements OnInit {
         (erro) => {
           this.erro =
             'Não foi possível efetuar a simulação com os valores informados.';
-          this.resultadoSimulacao = [];
         }
       );
   }
