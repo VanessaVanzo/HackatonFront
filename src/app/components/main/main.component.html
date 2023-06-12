@@ -1,10 +1,10 @@
 <mat-sidenav-container class="example-container main">
   <mat-sidenav class="sidenav" #sidenav mode="side" [(opened)]="opened" position="end">
-    <p class="text-azul flex"><mat-icon (click)="sidenav.toggle()">chevron_left</mat-icon>voltar</p>
-    <div class="flex flex-column flex-align-center">
+    <p class="text-azul flex diplay-nome-mobile"><mat-icon (click)="sidenav.toggle()">chevron_left</mat-icon>voltar</p>
+    <div class="flex flex-column flex-align-center mt-5">
       <mat-icon class="icone-money text-azul"> attach_money</mat-icon>
       <div class="flex flex-align-baseline">
-        <img src="../assets/trianguloTitulo.png" alt="">
+        <img class="diplay-nome-mobile"src="../assets/trianguloTitulo.png" alt="">
         <h1 class="text-azul ml-2">Empréstimo <span class="fw-300">Pessoal</span></h1>
       </div>
     </div>
@@ -12,12 +12,12 @@
     <form class="mt-5 flex flex-column flex-align-center" [formGroup]="formulario" (ngSubmit)="onSubmit()">
       <mat-form-field>
         <mat-label>Valor</mat-label>
-        <input matInput formControlName="valorDesejado">
+        <input currencyMask  matInput formControlName="valorDesejado">
       </mat-form-field>
 
       <mat-form-field>
         <mat-label>Prazo</mat-label>
-        <input matInput formControlName="prazo">
+        <input type="number" matInput formControlName="prazo">
       </mat-form-field>
 
       <p><button mat-flat-button color="primary" mat-button class="button-calcular">Calcular</button></p>
@@ -33,18 +33,18 @@
             <mat-panel-title class="text-azul">
               1º Opção - PRICE
             </mat-panel-title>
-            <mat-panel-description>
+            <mat-panel-description class="mat-panel-description-emp">
               <div *ngFor="let item of emprestimoPrice; let first = first;">
                 <p *ngIf="first">Primeira Parcela</p>
-                <p class="mt-2" *ngIf="first">{{item.valorPrestacao | currency:'BRL':true}}</p>
+                <p class="mt-2 margin-mobile" *ngIf="first">{{item.valorPrestacao | currency:'BRL':true}}</p>
               </div>
               <div *ngFor="let item of emprestimoPrice; let last = last;">
                 <p *ngIf="last">Última Parcela</p>
-                <p class="mt-2" *ngIf="last">{{item.valorPrestacao | currency:'BRL':true}}</p>
+                <p class="mt-2 margin-mobile" *ngIf="last">{{item.valorPrestacao | currency:'BRL':true}}</p>
               </div>
               <div>
                 <p>Taxa de Juros:</p>
-                <p class="mt-2">{{taxaJuros | number}} %</p>
+                <p class="mt-2 margin-mobile ">{{taxaJuros | number}} %</p>
               </div>
             </mat-panel-description>
 
@@ -80,18 +80,18 @@
             <mat-panel-title class="text-azul">
               2º Opção - SAC
             </mat-panel-title>
-            <mat-panel-description>
+            <mat-panel-description class="mat-panel-description-emp">
               <div *ngFor="let item of emprestimoSac; let first = first;">
                 <p *ngIf="first">Primeira Parcela</p>
-                <p class="mt-2" *ngIf="first">{{item.valorPrestacao | currency:'BRL':true}}</p>
+                <p class="mt-2 margin-mobile" *ngIf="first">{{item.valorPrestacao | currency:'BRL':true}}</p>
               </div>
               <div *ngFor="let item of emprestimoSac; let last = last;">
                 <p *ngIf="last">Última Parcela</p>
-                <p class="mt-2" *ngIf="last">{{item.valorPrestacao | currency:'BRL':true}}</p>
+                <p class="mt-2  margin-mobile" *ngIf="last">{{item.valorPrestacao | currency:'BRL':true}}</p>
               </div>
               <div>
                 <p>Taxa de Juros:</p>
-                <p class="mt-2">{{taxaJuros | number}}%</p>
+                <p class="mt-2 margin-mobile">{{taxaJuros | number}}%</p>
               </div>
             </mat-panel-description>
           </mat-expansion-panel-header>
