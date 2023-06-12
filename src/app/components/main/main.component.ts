@@ -1,12 +1,8 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import {
-  FormBuilder,
-  FormControl,
-  FormGroup,
-  Validators,
-} from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { map } from 'rxjs';
+import { Emprestimo, Parcelas } from './emprestimoInterface';
 
 @Component({
   selector: 'app-main',
@@ -16,22 +12,24 @@ import { map } from 'rxjs';
 export class MainComponent implements OnInit {
   formulario!: FormGroup;
   opened: boolean = false;
+  panelOpenState = false;
+  emprestimoSac: Parcelas[] = [];
+  emprestimoPrice: Parcelas[] = [];
+  resultadoSimulacao!: Emprestimo;
+  taxaJuros!: number;
+  erro: string = '';
 
   constructor(private formBuilder: FormBuilder, private http: HttpClient) {}
 
   ngOnInit() {
     this.formulario = this.formBuilder.group({
-      valorDesejado: [
-        null,
-        Validators.pattern("'^(d{1,3}(.d{3})*|d+)(,d{2})?$'"),
-      ],
-      prazo: [null, Validators.pattern("'^(d{1,3}(.d{3})*|d+)(,d{2})?$'")],
+      valorDesejado: [null],
+      prazo: [null],
     });
   }
 
   onSubmit() {
-    console.log(this.formulario);
-
+    this.erro = '';
     const headers = new HttpHeaders().set(
       'Content-Type',
       'application/json; charset=utf-8'
@@ -44,9 +42,18 @@ export class MainComponent implements OnInit {
         { headers: headers }
       )
       .pipe(map((res: any) => res))
-      .subscribe((dados: any) => {
-        console.log(dados);
-        this.formulario.reset();
-      });
+      .subscribe(
+        (dados: any) => {
+          this.taxaJuros = dados.taxaJuros;
+          this.resultadoSimulacao = dados.resultadoSimulacao;
+          console.log(this.resultadoSimulacao);
+          this.emprestimoPrice = this.resultadoSimulacao[0].parcelas;
+          this.emprestimoSac = this.resultadoSimulacao[1].parcelas;
+        },
+        (erro) => {
+          this.erro =
+            'Não foi possível efetuar a simulação com os valores informados.';
+        }
+      );
   }
 }

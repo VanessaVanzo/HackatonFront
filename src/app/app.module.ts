@@ -1,7 +1,5 @@
-import { NgModule } from '@angular/core';
+import { NgModule, LOCALE_ID } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { MAT_DATE_LOCALE } from '@angular/material/core';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -14,6 +12,10 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { MatExpansionModule } from '@angular/material/expansion';
+import { registerLocaleData } from '@angular/common';
+import ptBr from '@angular/common/locales/pt';
+registerLocaleData(ptBr);
 
 @NgModule({
   declarations: [AppComponent, HeaderComponent, MainComponent],
@@ -29,8 +31,9 @@ import { HttpClientModule } from '@angular/common/http';
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
+    MatExpansionModule,
   ],
-  providers: [{ provide: MAT_DATE_LOCALE, useValue: 'pt-br' }],
+  providers: [{ provide: LOCALE_ID, useValue: 'pt-PT' }],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

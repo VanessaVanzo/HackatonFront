@@ -1,10 +1,10 @@
 <mat-sidenav-container class="example-container main">
   <mat-sidenav class="sidenav" #sidenav mode="side" [(opened)]="opened" position="end">
-    <p><mat-icon class="text-azul" (click)="sidenav.toggle()">chevron_left</mat-icon>
+    <p class="text-azul flex"><mat-icon (click)="sidenav.toggle()">chevron_left</mat-icon>voltar</p>
     <div class="flex flex-column flex-align-center">
       <mat-icon class="icone-money text-azul"> attach_money</mat-icon>
       <div class="flex flex-align-baseline">
-        <img src="../assets/gr_trianguloTitulo.png" alt="">
+        <img src="../assets/trianguloTitulo.png" alt="">
         <h1 class="text-azul ml-2">Empréstimo <span class="fw-300">Pessoal</span></h1>
       </div>
     </div>
@@ -22,9 +22,108 @@
 
       <p><button mat-flat-button color="primary" mat-button class="button-calcular">Calcular</button></p>
 
+      <span class="mt-3 text-red">{{erro}}</span>
     </form>
 
+    <div *ngIf="resultadoSimulacao" class="resultado-simulacao mt-5">
+      <mat-accordion>
 
+        <mat-expansion-panel class="mb-2">
+          <mat-expansion-panel-header class="m-5">
+            <mat-panel-title class="text-azul">
+              1º Opção - PRICE
+            </mat-panel-title>
+            <mat-panel-description>
+              <div *ngFor="let item of emprestimoPrice; let first = first;">
+                <p *ngIf="first">Primeira Parcela</p>
+                <p class="mt-2" *ngIf="first">{{item.valorPrestacao | currency:'BRL':true}}</p>
+              </div>
+              <div *ngFor="let item of emprestimoPrice; let last = last;">
+                <p *ngIf="last">Última Parcela</p>
+                <p class="mt-2" *ngIf="last">{{item.valorPrestacao | currency:'BRL':true}}</p>
+              </div>
+              <div>
+                <p>Taxa de Juros:</p>
+                <p class="mt-2">{{taxaJuros | number}} %</p>
+              </div>
+            </mat-panel-description>
+
+          </mat-expansion-panel-header>
+
+
+            <div class ="flex flex-space-around detalhe-parcelas" *ngFor="let item of emprestimoPrice">
+
+              <div class="tx-center">
+                <p>Valor Parcela</p>
+                <p>{{item.numero}}</p>
+              </div>
+              <div class="tx-center">
+                <p>Valor Amortização</p>
+                <p>{{item.valorAmortizacao | currency:'BRL':true}}</p>
+              </div>
+              <div class="tx-center">
+                <p>Valor Juros</p>
+                <p> {{item.valorJuros | currency:'BRL':true}}</p>
+              </div>
+              <div class="tx-center">
+                <p>Valor Prestação</p>
+                <p> {{item.valorPrestacao | currency:'BRL':true}}</p>
+              </div>
+            </div>
+
+
+
+        </mat-expansion-panel>
+
+        <mat-expansion-panel class="mb-5">
+          <mat-expansion-panel-header class="m-5">
+            <mat-panel-title class="text-azul">
+              2º Opção - SAC
+            </mat-panel-title>
+            <mat-panel-description>
+              <div *ngFor="let item of emprestimoSac; let first = first;">
+                <p *ngIf="first">Primeira Parcela</p>
+                <p class="mt-2" *ngIf="first">{{item.valorPrestacao | currency:'BRL':true}}</p>
+              </div>
+              <div *ngFor="let item of emprestimoSac; let last = last;">
+                <p *ngIf="last">Última Parcela</p>
+                <p class="mt-2" *ngIf="last">{{item.valorPrestacao | currency:'BRL':true}}</p>
+              </div>
+              <div>
+                <p>Taxa de Juros:</p>
+                <p class="mt-2">{{taxaJuros | number}}%</p>
+              </div>
+            </mat-panel-description>
+          </mat-expansion-panel-header>
+
+
+            <div class ="flex flex-space-around detalhe-parcelas" *ngFor="let item of emprestimoSac">
+
+              <div class="tx-center">
+                <p>Valor Parcela</p>
+                <p>{{item.numero}}</p>
+              </div>
+              <div class="tx-center">
+                <p>Valor Amortização</p>
+                <p>{{item.valorAmortizacao | currency:'BRL':true}}</p>
+              </div>
+              <div class="tx-center">
+                <p>Valor Juros</p>
+                <p> {{item.valorJuros | currency:'BRL':true}}</p>
+              </div>
+              <div class="tx-center">
+                <p>Valor Prestação</p>
+                <p> {{item.valorPrestacao | currency:'BRL':true}}</p>
+              </div>
+
+            </div>
+
+        </mat-expansion-panel>
+      </mat-accordion>
+
+
+
+    </div>
 
 
 
