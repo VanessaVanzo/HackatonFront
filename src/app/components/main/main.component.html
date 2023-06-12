@@ -1,6 +1,6 @@
 <mat-sidenav-container class="example-container main">
   <mat-sidenav class="sidenav" #sidenav mode="side" [(opened)]="opened" position="end">
-    <p class="text-azul flex diplay-nome-mobile"><mat-icon (click)="sidenav.toggle()">chevron_left</mat-icon>voltar</p>
+    <p (click)="sidenav.toggle()" class="text-azul flex diplay-nome-mobile pointer"><mat-icon>chevron_left</mat-icon>voltar</p>
     <div class="flex flex-column flex-align-center mt-5">
       <mat-icon class="icone-money text-azul"> attach_money</mat-icon>
       <div class="flex flex-align-baseline">
@@ -28,7 +28,7 @@
     <div *ngIf="resultadoSimulacao" class="resultado-simulacao mt-5">
       <mat-accordion>
 
-        <mat-expansion-panel class="mb-2">
+        <mat-expansion-panel class="m-5">
           <mat-expansion-panel-header class="m-5">
             <mat-panel-title class="text-azul">
               1º Opção - PRICE
@@ -42,9 +42,9 @@
                 <p *ngIf="last">Última Parcela</p>
                 <p class="mt-2 margin-mobile" *ngIf="last">{{item.valorPrestacao | currency:'BRL':true}}</p>
               </div>
-              <div>
-                <p>Taxa de Juros:</p>
-                <p class="mt-2 margin-mobile ">{{taxaJuros | number}} %</p>
+              <div >
+                <p >Taxa de Juros:</p>
+                <p class="mt-2 margin-mobile ">{{taxaJuros |  number:'1.0-4'}}%</p>
               </div>
             </mat-panel-description>
 
@@ -54,19 +54,19 @@
             <div class ="flex flex-space-around detalhe-parcelas" *ngFor="let item of emprestimoPrice">
 
               <div class="tx-center">
-                <p>Valor Parcela</p>
+                <p class="text-azul">Valor Parcela</p>
                 <p>{{item.numero}}</p>
               </div>
               <div class="tx-center">
-                <p>Valor Amortização</p>
+                <p class="text-azul">Valor Amortização</p>
                 <p>{{item.valorAmortizacao | currency:'BRL':true}}</p>
               </div>
               <div class="tx-center">
-                <p>Valor Juros</p>
+                <p class="text-azul">Valor Juros</p>
                 <p> {{item.valorJuros | currency:'BRL':true}}</p>
               </div>
               <div class="tx-center">
-                <p>Valor Prestação</p>
+                <p class="text-azul">Valor Prestação</p>
                 <p> {{item.valorPrestacao | currency:'BRL':true}}</p>
               </div>
             </div>
@@ -75,7 +75,7 @@
 
         </mat-expansion-panel>
 
-        <mat-expansion-panel class="mb-5">
+        <mat-expansion-panel class="m-5">
           <mat-expansion-panel-header class="m-5">
             <mat-panel-title class="text-azul">
               2º Opção - SAC
@@ -91,7 +91,7 @@
               </div>
               <div>
                 <p>Taxa de Juros:</p>
-                <p class="mt-2 margin-mobile">{{taxaJuros | number}}%</p>
+                <p class="mt-2 margin-mobile"> {{taxaJuros | number:'1.0-4'}}%</p>
               </div>
             </mat-panel-description>
           </mat-expansion-panel-header>
@@ -100,19 +100,19 @@
             <div class ="flex flex-space-around detalhe-parcelas" *ngFor="let item of emprestimoSac">
 
               <div class="tx-center">
-                <p>Valor Parcela</p>
+                <p class="text-azul">Valor Parcela</p>
                 <p>{{item.numero}}</p>
               </div>
               <div class="tx-center">
-                <p>Valor Amortização</p>
+                <p class="text-azul">Valor Amortização</p>
                 <p>{{item.valorAmortizacao | currency:'BRL':true}}</p>
               </div>
               <div class="tx-center">
-                <p>Valor Juros</p>
+                <p class="text-azul">Valor Juros</p>
                 <p> {{item.valorJuros | currency:'BRL':true}}</p>
               </div>
               <div class="tx-center">
-                <p>Valor Prestação</p>
+                <p class="text-azul">Valor Prestação</p>
                 <p> {{item.valorPrestacao | currency:'BRL':true}}</p>
               </div>
 

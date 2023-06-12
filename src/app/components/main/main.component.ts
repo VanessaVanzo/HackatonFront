@@ -16,7 +16,7 @@ export class MainComponent implements OnInit {
   panelOpenState = false;
   emprestimoSac: Parcelas[] = [];
   emprestimoPrice: Parcelas[] = [];
-  resultadoSimulacao!: Emprestimo;
+  resultadoSimulacao!: Emprestimo | null;
   taxaJuros!: number;
   erro: string = '';
 
@@ -61,13 +61,14 @@ export class MainComponent implements OnInit {
         (dados: any) => {
           this.taxaJuros = dados.taxaJuros;
           this.resultadoSimulacao = dados.resultadoSimulacao;
-          console.log(this.resultadoSimulacao);
-          this.emprestimoPrice = this.resultadoSimulacao[0].parcelas;
-          this.emprestimoSac = this.resultadoSimulacao[1].parcelas;
+          this.emprestimoPrice = this.resultadoSimulacao![0].parcelas;
+          this.emprestimoSac = this.resultadoSimulacao![1].parcelas;
         },
         (erro) => {
           this.erro =
             'Não foi possível efetuar a simulação com os valores informados.';
+          this.resultadoSimulacao = [];
+          this.resultadoSimulacao = null;
         }
       );
   }
