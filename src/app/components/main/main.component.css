@@ -1,5 +1,5 @@
 .mat-drawer-content{
-  background-image: linear-gradient(#fcc03d ,#ffffff );
+  background-image: linear-gradient(180deg, #fdbf3d 50%, rgba(0,92,169,1) 53%);
 }
 
 
@@ -42,7 +42,7 @@
 
 .sidenav{
   background-color: rgb(247, 247, 247);
-  width: 100%;
+  width: 50%;
 }
 
 .icone-money{

@@ -53,6 +53,7 @@ export class MainComponent implements OnInit {
         (erro) => {
           this.erro =
             'Não foi possível efetuar a simulação com os valores informados.';
+          this.resultadoSimulacao = [];
         }
       );
   }
